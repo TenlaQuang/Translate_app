@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">mobile-app</string>
+    <string-array name="languages">
+        <item>English</item>
+        <item>Spanish</item>
+        <item>French</item>
+        <item>German</item>
+    </string-array>
+
+    <!-- Tạo array cho ảnh quốc kỳ tương ứng -->
+<!--    <array name="flags">-->
+<!--        <item>@drawable/usa_flag</item>-->
+<!--        <item>@drawable/spain_flag</item>-->
+<!--        <item>@drawable/france_flag</item>-->
+<!--        <item>@drawable/germany_flag</item>-->
+<!--    </array>-->
+</resources>
