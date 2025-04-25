@@ -79,16 +79,19 @@
 
     <Button
         android:id="@+id/login"
-        android:layout_width="190dp"
-        android:layout_height="58dp"
-        android:layout_marginTop="40dp"
+        android:layout_width="196dp"
+        android:layout_height="68dp"
+        android:layout_marginBottom="210dp"
         android:backgroundTint="#DDE69DB8"
         android:text="Đăng ký / Đăng nhập"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progressBar"
         tools:ignore="MissingConstraints"
         android:visibility="gone"
-        tools:layout_editor_absoluteY="402dp" />
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

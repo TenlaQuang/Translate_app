@@ -17,7 +17,6 @@
         >
 
         <TextView
-            android:id="@+id/username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/agrade"
@@ -38,11 +37,11 @@
             app:boxCornerRadiusBottomEnd="12dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@id/username"
+                android:id="@+id/username"
                 android:layout_width="310dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:inputType="textPersonName"/>
+                android:inputType="textPersonName" />
         </com.google.android.material.textfield.TextInputLayout>
         <View
             android:layout_width="match_parent"
@@ -78,6 +77,7 @@
             android:text="Đăng nhập"
             android:textColor="@color/black"
             android:textStyle="bold"
-            app:backgroundTint="#F8B8D8" />
+            app:backgroundTint="#F8B8D8"
+            android:clickable="true"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
