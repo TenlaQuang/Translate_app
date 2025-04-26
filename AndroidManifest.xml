@@ -26,6 +26,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.LoginActivity" />
+        <activity android:name=".ui.RegisterActivity"
+            android:label="Đăng ký"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        </activity>
+
     </application>
 
 </manifest>

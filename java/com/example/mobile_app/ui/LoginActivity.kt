@@ -44,7 +44,7 @@ class LoginActivity : AppCompatActivity() {
                             val loginResponse = response.body()
                             if (loginResponse?.success == true) {
                                 // Đăng nhập thành công, chuyển hướng đến màn hình chính
-                                startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+                                startActivity(Intent(this@LoginActivity, RegisterActivity::class.java))
                             } else {
                                 // Thông báo lỗi
                                 Toast.makeText(
