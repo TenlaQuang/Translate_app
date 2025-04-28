@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Định nghĩa màu nền -->
+    <solid android:color="#8DE67DA4" />
+
+    <!-- Định nghĩa kích thước của ellipse -->
+    <size
+        android:width="50dp"
+        android:height="50dp" />
+
+    <!-- Định nghĩa các góc bo tròn (mặc dù không cần thiết cho ellipse, nhưng có thể dùng để làm bo tròn nếu cần) -->
+    <corners android:radius="150dp" />
+</shape>
