@@ -15,10 +15,9 @@
     <!-- Translation Button (Dịch) - Center item -->
     <item
         android:id="@+id/nav_translate"
-        android:icon="@drawable/ic_translate"
+        android:icon="@drawable/ic_translate_circle"
         android:title="Dịch"
-        app:showAsAction="ifRoom"
-        android:enabled="true"/>
+        app:showAsAction="ifRoom"/>
 
     <!-- History Item -->
     <item
