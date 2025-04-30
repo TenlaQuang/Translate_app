@@ -17,7 +17,7 @@
         android:theme="@style/Theme.Mobileapp"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,11 +25,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.LoginActivity" />
-        <activity android:name=".ui.RegisterActivity"
+        <activity android:name=".ui.fragment.LoginActivity" />
+        <activity android:name=".ui.fragment.RegisterActivity"
             android:label="Đăng ký"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         </activity>
+        <activity android:name=".ui.fragment.HomeActivity"
+            android:label="Trang chủ"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        </activity>
+
 
     </application>
 

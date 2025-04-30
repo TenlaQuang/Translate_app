@@ -1,19 +1,15 @@
-package com.example.mobile_app.ui
+package com.example.mobile_app.ui.fragment
 
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
-import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
-import com.example.mobile_app.MainActivity
 import com.example.mobile_app.R
 import com.example.mobile_app.network.LoginRequest
 import com.example.mobile_app.network.LoginResponse
 import com.example.mobile_app.network.RetrofitClient
-import com.example.mobile_app.viewmodel.LoginViewModel
 import com.google.android.material.textfield.TextInputEditText
 import retrofit2.Call
 import retrofit2.Response
@@ -22,7 +18,7 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.login_activity)
+        setContentView(R.layout.activity_login)
 
         // Lấy thông tin username và password từ các EditText
         val usernameEditText = findViewById<TextInputEditText>(R.id.username)
