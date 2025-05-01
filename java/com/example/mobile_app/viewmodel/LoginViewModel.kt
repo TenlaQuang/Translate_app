@@ -2,7 +2,7 @@ package com.example.mobile_app.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.mobile_app.network.LoginResponse
+import com.example.mobile_app.model.LoginResponse
 import com.example.mobile_app.repository.UserRepository
 
 class LoginViewModel : ViewModel() {

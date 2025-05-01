@@ -7,8 +7,8 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mobile_app.R
-import com.example.mobile_app.network.LoginRequest
-import com.example.mobile_app.network.LoginResponse
+import com.example.mobile_app.model.LoginRequest
+import com.example.mobile_app.model.LoginResponse
 import com.example.mobile_app.network.RetrofitClient
 import com.google.android.material.textfield.TextInputEditText
 import retrofit2.Call
@@ -39,8 +39,15 @@ class LoginActivity : AppCompatActivity() {
                         if (response.isSuccessful) {
                             val loginResponse = response.body()
                             if (loginResponse?.success == true) {
-                                // Đăng nhập thành công, chuyển hướng đến màn hình chính
-                                startActivity(Intent(this@LoginActivity, RegisterActivity::class.java))
+                                // Lưu user_id vào SharedPreferences
+                                val userId = loginResponse.user?.user_id ?: -1  // Lấy user_id từ đối tượng user
+                                val sharedPreferences = getSharedPreferences("user_prefs", MODE_PRIVATE)
+                                val editor = sharedPreferences.edit()
+                                editor.putInt("user_id", userId)
+                                editor.apply()
+
+                                // Chuyển hướng đến màn hình chính
+                                startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
                             } else {
                                 // Thông báo lỗi
                                 Toast.makeText(
@@ -58,6 +65,8 @@ class LoginActivity : AppCompatActivity() {
                             ).show()
                         }
                     }
+
+
 
                     override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
                         Log.e("LoginError", "Lỗi kết nối: ${t.message}")

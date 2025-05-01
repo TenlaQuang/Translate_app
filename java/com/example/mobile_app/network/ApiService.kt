@@ -1,15 +1,14 @@
 package com.example.mobile_app.network
 
 
+import com.example.mobile_app.model.LoginRequest
+import com.example.mobile_app.model.LoginResponse
 import com.example.mobile_app.model.TranslateRequest
 import com.example.mobile_app.model.TranslateResponse
-import com.example.mobile_app.model.User
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.POST
 
-data class LoginRequest(val username: String, val password: String)
-data class LoginResponse(val success: Boolean, val message: String, val user: User?)
 data class RegisterRequest(val username: String, val password: String,val email: String)
 data class RegisterResponse(val success: Boolean, val message: String)
 data class CheckResponse(val exists: Boolean, val message: String)

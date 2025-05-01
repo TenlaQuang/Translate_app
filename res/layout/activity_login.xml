@@ -38,7 +38,7 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/username"
-                android:layout_width="310dp"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:inputType="textPersonName" />
@@ -59,15 +59,23 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/password"
-                android:layout_width="310dp"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
         <View
             android:layout_width="match_parent"
-            android:layout_height="20dp" />
-
+            android:layout_height="10dp" />
+        <TextView
+            android:id="@+id/forgot_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:text="forgot password?    "/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
         <Button
             android:id="@+id/login_btn"
             android:layout_width="150dp"

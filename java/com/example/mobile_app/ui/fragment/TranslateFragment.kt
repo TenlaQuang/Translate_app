@@ -1,5 +1,7 @@
 package com.example.mobile_app.ui.fragment
 
+import android.content.Context
+import android.content.Context.MODE_PRIVATE
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -64,7 +66,8 @@ class TranslateFragment : Fragment() {
 
             val sourceCode = langCodeMap[sourceLang] ?: "en"
             val targetCode = langCodeMap[targetLang] ?: "es"
-            val userId = 1
+            val sharedPreferences = requireContext().getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
+            val userId = sharedPreferences.getInt("user_id", -1)  // Giá trị mặc định là -1 nếu không tìm thấy
 
             viewModel.translateText(inputText, sourceCode, targetCode, userId)
         }

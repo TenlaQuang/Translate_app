@@ -1,8 +1,8 @@
 package com.example.mobile_app.repository
 
+import com.example.mobile_app.model.LoginRequest
+import com.example.mobile_app.model.LoginResponse
 import com.example.mobile_app.network.CheckResponse
-import com.example.mobile_app.network.LoginRequest
-import com.example.mobile_app.network.LoginResponse
 import com.example.mobile_app.network.RegisterRequest
 import com.example.mobile_app.network.RegisterResponse
 import com.example.mobile_app.network.RetrofitClient
