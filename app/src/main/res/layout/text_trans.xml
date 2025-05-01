@@ -47,7 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="#00FFFFFF"
-            app:srcCompat="@drawable/reverse" />
+            app:srcCompat="@drawable/ic_swap" />
 
         <Spinner
             android:id="@+id/spinner2"

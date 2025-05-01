@@ -17,7 +17,8 @@
         android:id="@+id/nav_translate"
         android:icon="@drawable/ic_translate_circle"
         android:title="Dịch"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="ifRoom"
+        android:iconTint="@null"/>
 
     <!-- History Item -->
     <item

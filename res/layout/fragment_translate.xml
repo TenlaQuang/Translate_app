@@ -1,24 +1,79 @@
-<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF">
+    android:padding="16dp">
 
-    <TextView
-        android:id="@+id/translate_title"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/spinner_layout"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Trang dịch"
-        android:textSize="24sp"
-        android:textColor="#000000"
-        android:fontFamily="sans-serif-medium"
+        android:orientation="horizontal"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="32dp"/>
+        android:layout_marginTop="16dp"
+        android:gravity="center_horizontal">
 
-    <!-- Bạn có thể thêm các view khác tại đây như EditText để nhập văn bản, nút dịch,... -->
+        <Spinner
+            android:id="@+id/spinner_source_language"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="8dp" />
 
+        <!-- Nút đổi ngôn ngữ -->
+        <ImageView
+            android:id="@+id/btn_swap_languages"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_swap"
+            android:contentDescription="Đổi ngôn ngữ"
+            android:layout_marginHorizontal="4dp"
+            android:padding="8dp"
+            android:background="?attr/selectableItemBackgroundBorderless" />
+
+        <Spinner
+            android:id="@+id/spinner_target_language"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp" />
+    </LinearLayout>
+    <!-- Nhập văn bản -->
+    <EditText
+        android:id="@+id/editTextInput"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Nhập nội dung cần dịch..."
+        app:layout_constraintTop_toBottomOf="@+id/spinner_layout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        android:gravity="top|start"
+        android:minLines="4"/>
+
+    <!-- Nút dịch -->
+    <Button
+        android:id="@+id/btnTranslate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dịch"
+        app:layout_constraintTop_toBottomOf="@+id/editTextInput"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp" />
+
+    <!-- Kết quả dịch -->
+    <EditText
+        android:id="@+id/editTextOutput"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Kết quả dịch"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/btnTranslate"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
