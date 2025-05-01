@@ -48,6 +48,7 @@ class HomeActivity : AppCompatActivity() {
                 else -> false
             }
         }
+        binding.bottomNavigation.selectedItemId = R.id.nav_translate
 
         // Nav Drawer actions
         binding.navView.setNavigationItemSelectedListener { menuItem ->

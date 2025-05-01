@@ -1,6 +1,8 @@
 package com.example.mobile_app.network
 
 
+import com.example.mobile_app.model.TranslateRequest
+import com.example.mobile_app.model.TranslateResponse
 import com.example.mobile_app.model.User
 import retrofit2.Call
 import retrofit2.http.Body
@@ -21,4 +23,6 @@ interface ApiService {
     fun checkEmailExists(@Body email: String): Call<CheckResponse>
     @POST("/check-username")
     fun checkUsernameExists(@Body username: String): Call<CheckResponse>
+    @POST("/api/translate")
+    fun translateText(@Body request: TranslateRequest): Call<TranslateResponse>
 }
