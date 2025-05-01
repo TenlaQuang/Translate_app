@@ -64,7 +64,9 @@ class TranslateFragment : Fragment() {
 
             val sourceCode = langCodeMap[sourceLang] ?: "en"
             val targetCode = langCodeMap[targetLang] ?: "es"
-            viewModel.translateText(inputText, sourceCode, targetCode)
+            val userId = 1
+
+            viewModel.translateText(inputText, sourceCode, targetCode, userId)
         }
 
         // Quan sát kết quả

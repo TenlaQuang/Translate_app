@@ -23,8 +23,8 @@ class TranslateViewModel : ViewModel() {
     private val _error = MutableLiveData<String>()
     private val repository = TranslateRepository()
 
-    fun translateText(text: String, source: String, target: String) {
-        repository.translate(text, source, target).observeForever { result ->
+    fun translateText(text: String, source: String, target: String, user_id: Int) {
+        repository.translate(text, source, target, user_id).observeForever { result ->
             result.onSuccess {
                 _translatedText.value = it
             }

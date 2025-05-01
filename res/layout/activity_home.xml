@@ -6,7 +6,8 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragment.HomeActivity">
+    tools:context=".ui.fragment.HomeActivity"
+    android:background="#F1E7E7">
 
     <!-- Nội dung chính nằm trong ConstraintLayout -->
     <androidx.constraintlayout.widget.ConstraintLayout

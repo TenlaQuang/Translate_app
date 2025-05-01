@@ -11,10 +11,10 @@ import retrofit2.Response
 
 class TranslateRepository {
 
-    fun translate(text: String, source: String, target: String): LiveData<Result<String>> {
+    fun translate(text: String, source: String, target: String, user_id: Int): LiveData<Result<String>> {
         val result = MutableLiveData<Result<String>>()
 
-        val request = TranslateRequest(q = text, source = source, target = target)
+        val request = TranslateRequest(q = text, source = source, target = target, user_id = user_id)
 
         RetrofitClient.instance.translateText(request).enqueue(object : Callback<TranslateResponse> {
             override fun onResponse(call: Call<TranslateResponse>, response: Response<TranslateResponse>) {
