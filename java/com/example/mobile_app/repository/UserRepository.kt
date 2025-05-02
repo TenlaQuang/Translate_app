@@ -1,10 +1,10 @@
 package com.example.mobile_app.repository
 
+import com.example.mobile_app.model.CheckResponse
 import com.example.mobile_app.model.LoginRequest
 import com.example.mobile_app.model.LoginResponse
-import com.example.mobile_app.network.CheckResponse
-import com.example.mobile_app.network.RegisterRequest
-import com.example.mobile_app.network.RegisterResponse
+import com.example.mobile_app.model.RegisterRequest
+import com.example.mobile_app.model.RegisterResponse
 import com.example.mobile_app.network.RetrofitClient
 import retrofit2.Call
 

@@ -19,12 +19,68 @@ class TranslateFragment : Fragment() {
     private val binding get() = _binding!!
     private val viewModel: TranslateViewModel by viewModels()
 
-    private val languages = arrayOf("English", "Spanish", "French", "German")
+    private val sourceLanguages = arrayOf("Auto Detect", "English", "Albanian", "Arabic", "Azerbaijani", "Basque", "Bengali", "Bulgarian",
+        "Catalan", "Chinese", "Chinese (traditional)", "Czech", "Danish", "Dutch",
+        "Esperanto", "Estonian", "Finnish", "French", "Galician", "German", "Greek",
+        "Hebrew", "Hindi", "Hungarian", "Indonesian", "Irish", "Italian", "Japanese",
+        "Korean", "Latvian", "Lithuanian", "Malay", "Norwegian", "Persian", "Polish",
+        "Portuguese", "Romanian", "Russian", "Slovak", "Slovenian", "Spanish", "Swedish",
+        "Tagalog", "Thai", "Turkish", "Ukranian", "Urdu")
+    private val targetLanguages = arrayOf("English", "Albanian", "Arabic", "Azerbaijani", "Basque", "Bengali", "Bulgarian",
+        "Catalan", "Chinese", "Chinese (traditional)", "Czech", "Danish", "Dutch",
+        "Esperanto", "Estonian", "Finnish", "French", "Galician", "German", "Greek",
+        "Hebrew", "Hindi", "Hungarian", "Indonesian", "Irish", "Italian", "Japanese",
+        "Korean", "Latvian", "Lithuanian", "Malay", "Norwegian", "Persian", "Polish",
+        "Portuguese", "Romanian", "Russian", "Slovak", "Slovenian", "Spanish", "Swedish",
+        "Tagalog", "Thai", "Turkish", "Ukranian", "Urdu")
     private val langCodeMap = mapOf(
+        "Auto Detect" to "auto",
         "English" to "en",
-        "Spanish" to "es",
+        "Albanian" to "sq",
+        "Arabic" to "ar",
+        "Azerbaijani" to "az",
+        "Basque" to "eu",
+        "Bengali" to "bn",
+        "Bulgarian" to "bg",
+        "Catalan" to "ca",
+        "Chinese" to "zh",
+        "Chinese (traditional)" to "zt",
+        "Czech" to "cs",
+        "Danish" to "da",
+        "Dutch" to "nl",
+        "Esperanto" to "eo",
+        "Estonian" to "et",
+        "Finnish" to "fi",
         "French" to "fr",
-        "German" to "de"
+        "Galician" to "gl",
+        "German" to "de",
+        "Greek" to "el",
+        "Hebrew" to "he",
+        "Hindi" to "hi",
+        "Hungarian" to "hu",
+        "Indonesian" to "id",
+        "Irish" to "ga",
+        "Italian" to "it",
+        "Japanese" to "ja",
+        "Korean" to "ko",
+        "Latvian" to "lv",
+        "Lithuanian" to "lt",
+        "Malay" to "ms",
+        "Norwegian" to "nb",
+        "Persian" to "fa",
+        "Polish" to "pl",
+        "Portuguese" to "pt",
+        "Romanian" to "ro",
+        "Russian" to "ru",
+        "Slovak" to "sk",
+        "Slovenian" to "sl",
+        "Spanish" to "es",
+        "Swedish" to "sv",
+        "Tagalog" to "tl",
+        "Thai" to "th",
+        "Turkish" to "tr",
+        "Ukranian" to "uk",
+        "Urdu" to "ur"
     )
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -35,10 +91,14 @@ class TranslateFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, languages)
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        binding.spinnerSourceLanguage.adapter = adapter
-        binding.spinnerTargetLanguage.adapter = adapter
+        val sourceAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, sourceLanguages)
+        sourceAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+
+        val targetAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, targetLanguages)
+        targetAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+
+        binding.spinnerSourceLanguage.adapter = sourceAdapter
+        binding.spinnerTargetLanguage.adapter = targetAdapter
 
         // Hoán đổi
         binding.btnSwapLanguages.setOnClickListener {
