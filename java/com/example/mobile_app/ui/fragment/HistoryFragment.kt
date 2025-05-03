@@ -80,29 +80,22 @@ class HistoryFragment : Fragment() {
                     viewModel.addFavorite(
                         FavoriteRequest(
                             user_id = userId,
-                            translation_id = item.id, // truyền ID của bản dịch gốc
+                            translation_id = item.id,
                             input_text = item.input_text,
                             translated_text = item.translated_text,
                             source_lang = item.source_lang,
                             target_lang = item.target_lang
                         )
                     )
-
                     item.is_favorite = 1
                 }
 
-                // Tìm và cập nhật lại danh sách tạm
-                val updatedList = currentHistoryList.map {
-                    if (it.id == item.id) item else it
-                }
-                currentHistoryList = updatedList
-                adapter.submitList(updatedList)
+                val index = adapter.currentList.indexOfFirst { it.id == item.id }
+                if (index != -1) adapter.notifyItemChanged(index)
 
-                // (Không cần notifyItemChanged nữa vì submitList đã gọi DiffUtil)
-                viewModel.loadHistory(userId)
-                favoriteViewModel.loadFavorites(userId)
             }
         }
+
 
     }
 
