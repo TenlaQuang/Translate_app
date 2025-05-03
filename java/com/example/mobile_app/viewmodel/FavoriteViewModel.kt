@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.mobile_app.model.Favorite
 import com.example.mobile_app.model.FavoriteRequest
 import com.example.mobile_app.model.Translation
 import com.example.mobile_app.repository.TranslateRepository
@@ -12,11 +13,10 @@ import kotlinx.coroutines.launch
 
 class FavoriteViewModel(private val repository: TranslateRepository) : ViewModel() {
 
-    private val _favoriteList = MutableLiveData<List<Translation>>()
-    val favoriteList: LiveData<List<Translation>> = _favoriteList
+    private val _favoriteList = MutableLiveData<List<Favorite>>()
+    val favoriteList: LiveData<List<Favorite>> = _favoriteList
 
     fun loadFavorites(userId: Int) {
-        Log.d("FavoriteViewModel", "Tải favorites với userId = $userId")
         viewModelScope.launch {
             try {
                 val favorites = repository.fetchFavorites(userId)
@@ -27,6 +27,9 @@ class FavoriteViewModel(private val repository: TranslateRepository) : ViewModel
         }
     }
 
+    fun isFavorite(translationId: Int): Boolean {
+        return _favoriteList.value?.any { it.translation_id == translationId } == true
+    }
 
     fun addToFavorites(favoriteRequest: FavoriteRequest) {
         viewModelScope.launch {

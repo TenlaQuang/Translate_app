@@ -25,7 +25,7 @@ class HistoryAdapter : ListAdapter<Translation, HistoryAdapter.ViewHolder>(DiffC
 
             // Gắn icon favorite đúng theo trạng thái
             binding.starIcon.setImageResource(
-                if (item.is_favorite == 1) R.drawable.ic_camera else R.drawable.ic_favorite
+                if (item.is_favorite == 1) R.drawable.ic_star else R.drawable.ic_favorite
             )
 
             // Gắn sự kiện click ngôi sao

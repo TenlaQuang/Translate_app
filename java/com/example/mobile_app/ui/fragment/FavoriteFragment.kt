@@ -32,11 +32,11 @@ class FavoriteFragment : Fragment() {
 
         val userId = requireContext().getSharedPreferences("user_prefs", Context.MODE_PRIVATE).getInt("user_id", -1)
         viewModel.loadFavorites(userId)
-
-        viewModel.favoriteList.observe(viewLifecycleOwner) { favorites ->
-            val updated = favorites.map { it.copy(is_favorite = 1) }
-            adapter.submitList(updated)
-        }
+//
+//        viewModel.favoriteList.observe(viewLifecycleOwner) { favorites ->
+//            val updated = favorites.map { it.copy(is_favorite = 1) }
+//            adapter.submitList(updated)
+//        }
 
         return binding.root
     }

@@ -62,7 +62,7 @@ class HistoryFragment : Fragment() {
 
         viewModel.historyList.observe(viewLifecycleOwner) { historyList ->
             favoriteViewModel.favoriteList.observe(viewLifecycleOwner) { favoriteList ->
-                val favoriteIds = favoriteList.map { it.id }
+                val favoriteIds = favoriteList.map { it.translation_id }
                 val updatedList = historyList.map { item ->
                     item.copy(is_favorite = if (favoriteIds.contains(item.id)) 1 else 0)
                 }
@@ -103,6 +103,7 @@ class HistoryFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
 }
 
 

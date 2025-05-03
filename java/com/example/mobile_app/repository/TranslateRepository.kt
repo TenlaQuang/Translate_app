@@ -3,6 +3,7 @@ package com.example.mobile_app.repository
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.mobile_app.model.Favorite
 import com.example.mobile_app.model.FavoriteRequest
 import com.example.mobile_app.model.TranslateRequest
 import com.example.mobile_app.model.TranslateResponse
@@ -41,7 +42,7 @@ class TranslateRepository{
         val history = RetrofitClient.instance.getHistory(userId)
         return history
     }
-    suspend fun fetchFavorites(userId: Int): List<Translation> {
+    suspend fun fetchFavorites(userId: Int): List<Favorite> {
         try {
             val response = RetrofitClient.instance.getFavorites(userId)
             Log.d("TranslateRepository", "Fetch favorite OK: $response")

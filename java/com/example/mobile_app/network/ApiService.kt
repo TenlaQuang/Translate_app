@@ -2,6 +2,7 @@ package com.example.mobile_app.network
 
 
 import com.example.mobile_app.model.CheckResponse
+import com.example.mobile_app.model.Favorite
 import com.example.mobile_app.model.FavoriteRequest
 import com.example.mobile_app.model.FavoriteResponse
 import com.example.mobile_app.model.LoginRequest
@@ -39,7 +40,7 @@ interface ApiService {
     @DELETE("/api/favorites/remove")
     suspend fun removeFavorite(@Query("user_id") userId: Int, @Query("translation_id") translationId: Int): Response<Unit>
     @GET("/api/favorites/{userId}")
-    suspend fun getFavorites(@Path("userId") userId: Int): List<Translation>
+    suspend fun getFavorites(@Path("userId") userId: Int): List<Favorite>
 
 
 }
