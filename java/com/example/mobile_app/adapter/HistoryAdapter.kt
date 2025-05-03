@@ -6,20 +6,32 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.mobile_app.R
 import com.example.mobile_app.databinding.ItemHistoryBinding
 import com.example.mobile_app.model.Translation
 import com.example.mobile_app.model.TranslationHistory
 
 class HistoryAdapter : ListAdapter<Translation, HistoryAdapter.ViewHolder>(DiffCallback()) {
+
     var onFavoriteClick: ((Translation) -> Unit)? = null
-    class ViewHolder(private val binding: ItemHistoryBinding) : RecyclerView.ViewHolder(binding.root) {
+
+    inner class ViewHolder(val binding: ItemHistoryBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Translation) {
-            Log.d("Adapter", "Item: $item")
             binding.tvSourceLang.text = item.source_lang
             binding.tvTargetLang.text = item.target_lang
             binding.tvinput.text = item.input_text
             binding.tvTranslate.text = item.translated_text
             binding.tvDate.text = item.translated_at
+
+            // Gắn icon favorite đúng theo trạng thái
+            binding.starIcon.setImageResource(
+                if (item.is_favorite == 1) R.drawable.ic_camera else R.drawable.ic_favorite
+            )
+
+            // Gắn sự kiện click ngôi sao
+            binding.starIcon.setOnClickListener {
+                onFavoriteClick?.invoke(item)
+            }
         }
     }
 
@@ -34,10 +46,7 @@ class HistoryAdapter : ListAdapter<Translation, HistoryAdapter.ViewHolder>(DiffC
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.binding.favorite.setOnClickListener {
-            onFavoriteClick?.invoke(item)
-        }
-        holder.bind(getItem(position))
+        holder.bind(getItem(position))  // Không nên gọi item ở đây nữa
     }
 }
 

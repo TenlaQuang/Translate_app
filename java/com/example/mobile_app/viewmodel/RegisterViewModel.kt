@@ -2,9 +2,8 @@ package com.example.mobile_app.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.mobile_app.model.RegisterResponse
 import com.example.mobile_app.network.ApiService
-import com.example.mobile_app.network.CheckResponse
-import com.example.mobile_app.network.RegisterResponse
 import com.example.mobile_app.repository.UserRepository
 import retrofit2.Call
 import retrofit2.Callback

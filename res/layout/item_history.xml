@@ -81,7 +81,7 @@
                 android:textSize="16sp" />
 
             <ImageView
-                android:id="@+id/favorite"
+                android:id="@+id/starIcon"
                 android:layout_width="0dp"
                 android:layout_height="22dp"
                 android:layout_weight="1"

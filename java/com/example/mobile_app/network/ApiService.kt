@@ -12,10 +12,13 @@ import com.example.mobile_app.model.TranslateRequest
 import com.example.mobile_app.model.TranslateResponse
 import com.example.mobile_app.model.Translation
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 
 interface ApiService {
@@ -31,9 +34,12 @@ interface ApiService {
     fun translateText(@Body request: TranslateRequest): Call<TranslateResponse>
     @GET("/api/history/{userId}")
     suspend fun getHistory(@Path("userId") userId: Int): List<Translation>
-    @POST("/api/favorite")
-    fun addFavorite(@Body favoriteRequest: FavoriteRequest): Call<FavoriteResponse>
+    @POST("/api/favorites/add")
+    suspend fun addFavorite(@Body request: FavoriteRequest): Response<Void>
+    @DELETE("/api/favorites/remove")
+    suspend fun removeFavorite(@Query("user_id") userId: Int, @Query("translation_id") translationId: Int): Response<Unit>
     @GET("/api/favorites/{userId}")
-    fun getFavorites(@Path("userId") userId: Int): Call<List<Translation>>
+    suspend fun getFavorites(@Path("userId") userId: Int): List<Translation>
+
 
 }

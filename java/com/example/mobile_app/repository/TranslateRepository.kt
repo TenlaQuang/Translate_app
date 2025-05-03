@@ -3,6 +3,7 @@ package com.example.mobile_app.repository
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.mobile_app.model.FavoriteRequest
 import com.example.mobile_app.model.TranslateRequest
 import com.example.mobile_app.model.TranslateResponse
 import com.example.mobile_app.model.Translation
@@ -38,11 +39,25 @@ class TranslateRepository{
 
     suspend fun fetchHistory(userId: Int): List<Translation> {
         val history = RetrofitClient.instance.getHistory(userId)
-        Log.d("TranslateRepository", "Dữ liệu từ server: $history")
         return history
     }
     suspend fun fetchFavorites(userId: Int): List<Translation> {
-        val favorites = RetrofitClient.instance.getFavorites(userId)
-        return favorites
+        try {
+            val response = RetrofitClient.instance.getFavorites(userId)
+            Log.d("TranslateRepository", "Fetch favorite OK: $response")
+            return response
+        } catch (e: Exception) {
+            Log.e("TranslateRepository", "Lỗi khi fetchFavorites: ${e.message}", e)
+            throw e
+        }
+    }
+
+
+    suspend fun addFavorite(request: FavoriteRequest): Response<Void> {
+        return RetrofitClient.instance.addFavorite(request)
+    }
+
+    suspend fun removeFavorite(userId: Int, translationId: Int) {
+        RetrofitClient.instance.removeFavorite(userId, translationId)
     }
 }
