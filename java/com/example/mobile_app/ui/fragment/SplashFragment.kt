@@ -34,7 +34,7 @@ class SplashFragment : Fragment() {
             login.visibility = View.VISIBLE
         }, 3000)
         login.setOnClickListener {
-            val intent = Intent(requireContext(), LoginActivity::class.java)
+            val intent = Intent(requireContext(), HomeActivity::class.java)
             startActivity(intent)
             requireActivity().finish() // Đóng Splash luôn
         }

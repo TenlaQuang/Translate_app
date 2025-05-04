@@ -3,6 +3,7 @@ package com.example.mobile_app.adapter
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -30,7 +31,15 @@ class HistoryAdapter : ListAdapter<Translation, HistoryAdapter.ViewHolder>(DiffC
 
             // Gắn sự kiện click ngôi sao
             binding.starIcon.setOnClickListener {
-                onFavoriteClick?.invoke(item)
+                if (item.is_favorite == 0) {
+                    AlertDialog.Builder(binding.root.context)
+                        .setMessage("Add to favorite?")
+                        .setPositiveButton("yes") { _, _ -> onFavoriteClick?.invoke(item) }
+                        .setNegativeButton("no", null)
+                        .show()
+                }else{
+
+                }
             }
         }
     }
