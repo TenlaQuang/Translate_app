@@ -3,13 +3,7 @@ package com.example.mobile_app.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.mobile_app.network.ApiService
-import com.example.mobile_app.model.TranslateRequest
-import com.example.mobile_app.model.TranslateResponse
 import com.example.mobile_app.repository.TranslateRepository
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class TranslateViewModel : ViewModel() {
     private val translateRepository = TranslateRepository()
@@ -34,3 +28,4 @@ class TranslateViewModel : ViewModel() {
         }
     }
 }
+

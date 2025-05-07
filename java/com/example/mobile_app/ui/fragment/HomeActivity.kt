@@ -1,6 +1,9 @@
 package com.example.mobile_app.ui.fragment
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
@@ -8,6 +11,7 @@ import androidx.fragment.app.Fragment
 import com.example.mobile_app.R
 import com.example.mobile_app.databinding.ActivityHomeBinding
 import androidx.appcompat.app.ActionBarDrawerToggle
+import com.google.android.material.navigation.NavigationView
 
 class HomeActivity : AppCompatActivity() {
 
@@ -20,7 +24,12 @@ class HomeActivity : AppCompatActivity() {
         // Khởi tạo binding
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        val sharedPreferences = getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
+        val username = sharedPreferences.getString("username", "Người dùng")
+        val navigationView = findViewById<NavigationView>(R.id.nav_view)
+        val headerView = navigationView.getHeaderView(0)
+        val tvUsername = headerView.findViewById<TextView>(R.id.tvUsername)
+        tvUsername.text = "Hello, $username!"
         // Gắn toolbar
         setSupportActionBar(binding.toolbar2)
 
@@ -54,7 +63,7 @@ class HomeActivity : AppCompatActivity() {
         binding.navView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.nav_profile -> {
-                    // TODO: Mở ProfileActivity chẳng hạn
+                    startActivity(Intent(this, ProfileActivity::class.java))
                 }
                 R.id.nav_logout -> {
                     // TODO: Đăng xuất và chuyển về màn hình Login

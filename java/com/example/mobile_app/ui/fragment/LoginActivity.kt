@@ -1,5 +1,6 @@
 package com.example.mobile_app.ui.fragment
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -41,8 +42,10 @@ class LoginActivity : AppCompatActivity() {
                             if (loginResponse?.success == true) {
                                 // Lưu user_id vào SharedPreferences
                                 val userId = loginResponse.user?.user_id ?: -1  // Lấy user_id từ đối tượng user
-                                val sharedPreferences = getSharedPreferences("user_prefs", MODE_PRIVATE)
+                                val user = loginResponse.user
+                                val sharedPreferences = getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
                                 val editor = sharedPreferences.edit()
+                                editor.putString("username", user?.username ?: "Người dùng")
                                 editor.putInt("user_id", userId)
                                 editor.apply()
 

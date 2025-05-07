@@ -36,6 +36,7 @@
             android:label="Translate app"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         </activity>
+        <activity android:name=".ui.fragment.ProfileActivity" />
 
 
     </application>
