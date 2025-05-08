@@ -1,12 +1,18 @@
 package com.example.mobile_app.repository
 
 import com.example.mobile_app.model.CheckResponse
+import com.example.mobile_app.model.EmailCheckResponse
+import com.example.mobile_app.model.EmailRequest
 import com.example.mobile_app.model.LoginRequest
 import com.example.mobile_app.model.LoginResponse
+import com.example.mobile_app.model.PasswordRequest
 import com.example.mobile_app.model.RegisterRequest
 import com.example.mobile_app.model.RegisterResponse
+import com.example.mobile_app.model.UserResponse
 import com.example.mobile_app.network.RetrofitClient
 import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class UserRepository {
     fun login(username: String, password: String, callback: (LoginResponse?) -> Unit) {
@@ -74,4 +80,20 @@ class UserRepository {
             }
         })
     }
+    fun getUser(userId: Int): Call<UserResponse> {
+        return RetrofitClient.instance.getUser(userId)
+    }
+
+    fun updateEmail(userId: Int, emailRequest: EmailRequest): Call<Void> {
+        return RetrofitClient.instance.updateEmail(userId, emailRequest)
+    }
+
+    fun changePassword(userId: Int, passwordRequest: PasswordRequest): Call<Void> {
+        return RetrofitClient.instance.changePassword(userId, passwordRequest)
+    }
+
+    fun checkEmail(email: String): Call<EmailCheckResponse> {
+        return RetrofitClient.instance.checkEmail(email)
+    }
+
 }
