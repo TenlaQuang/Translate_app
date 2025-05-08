@@ -66,7 +66,15 @@ class HomeActivity : AppCompatActivity() {
                     startActivity(Intent(this, ProfileActivity::class.java))
                 }
                 R.id.nav_logout -> {
-                    // TODO: Đăng xuất và chuyển về màn hình Login
+                    // Xóa SharedPreferences
+                    val sharedPreferences = getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
+                    sharedPreferences.edit().clear().apply()
+
+                    // Chuyển về LoginActivity và xóa stack hiện tại
+                    val intent = Intent(this, LoginActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    startActivity(intent)
+                    true
                 }
             }
             binding.drawerLayout.closeDrawer(GravityCompat.START)
