@@ -1,5 +1,6 @@
 package com.example.mobile_app.network
 
+import com.example.mobile_app.model.CheckRequest
 import com.example.mobile_app.model.CheckResponse
 import com.example.mobile_app.model.EmailCheckResponse
 import com.example.mobile_app.model.EmailRequest
@@ -30,10 +31,10 @@ interface ApiService {
     fun login(@Body request: LoginRequest): Call<LoginResponse>
     @POST("register")
     fun register(@Body registerRequest: RegisterRequest): Call<RegisterResponse>
-    @POST("/check-email")
-    fun checkEmailExists(@Body email: String): Call<CheckResponse>
-    @POST("/check-username")
-    fun checkUsernameExists(@Body username: String): Call<CheckResponse>
+    @POST("check-email")
+    fun checkEmail(@Body request: CheckRequest): Call<CheckResponse>
+    @POST("check-username")
+    fun checkUsername(@Body request: CheckRequest): Call<CheckResponse>
     @POST("/api/translate")
     fun translateText(@Body request: TranslateRequest): Call<TranslateResponse>
     @GET("/api/history/{userId}")

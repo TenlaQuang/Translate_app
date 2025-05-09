@@ -4,25 +4,59 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="657dp"
+        android:layout_height="300dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/form"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.605"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints">
 
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="255dp"
+            android:layout_height="321dp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ellipse2"
+            tools:ignore="MissingConstraints" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="372dp"
+            android:layout_height="363dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/ellipse"
+            tools:ignore="MissingConstraints" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
     <LinearLayout
+        android:id="@+id/form"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteY="102dp"
         android:layout_width="319dp"
         android:layout_height="445dp"
         android:background="@drawable/rounded"
         android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="180dp">
 
         <!-- Tiêu đề Đăng ký -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/agrade"
-            android:text="Đăng ký"
+            android:text="Register"
             android:textAlignment="center"
-            android:textSize="34dp" />
+            android:textSize="34dp"
+            android:textColor="@color/black"/>
 
         <View
             android:layout_width="match_parent"
@@ -55,7 +89,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Mật khẩu"
+            android:hint="Password"
             app:boxBackgroundMode="outline"
             app:boxCornerRadiusBottomEnd="12dp"
             app:boxCornerRadiusBottomStart="12dp"
@@ -79,7 +113,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Xác minh mật khẩu"
+            android:hint="Confirm password"
             app:boxBackgroundMode="outline"
             app:boxCornerRadiusBottomEnd="12dp"
             app:boxCornerRadiusBottomStart="12dp"
@@ -107,9 +141,28 @@
             android:layout_gravity="center"
             android:background="@drawable/button_background"
             android:clickable="true"
-            android:text="Đăng ký"
+            android:text="Sign up"
             android:textColor="@color/black"
             android:textStyle="bold"
             app:backgroundTint="#F8B8D8" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="70dp"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/back">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                app:srcCompat="@drawable/ic_back"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Back to login"
+                android:textColor="@color/black"/>
+        </LinearLayout>
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

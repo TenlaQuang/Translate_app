@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mobile_app.R
@@ -25,6 +26,11 @@ class LoginActivity : AppCompatActivity() {
         val usernameEditText = findViewById<TextInputEditText>(R.id.username)
         val passwordEditText = findViewById<TextInputEditText>(R.id.password)
         val loginButton = findViewById<Button>(R.id.login_btn)
+        val signUpButton = findViewById<TextView>(R.id.sign_up)
+        signUpButton.setOnClickListener {
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
+        }
         loginButton.setOnClickListener {
             // Gửi yêu cầu đăng nhập
             val username = usernameEditText.text.toString().trim()

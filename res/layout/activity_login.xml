@@ -41,12 +41,10 @@
     <LinearLayout
         android:id="@+id/form"
         android:layout_width="319dp"
-
         android:layout_height="445dp"
-        android:layout_marginBottom="140dp"
+        android:layout_marginBottom="180dp"
         android:background="@drawable/rounded"
         android:orientation="vertical"
-
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -56,7 +54,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/agrade"
-            android:text="Đăng nhập"
+            android:text="Login"
             android:textAlignment="center"
             android:textSize="34dp" />
 
@@ -67,7 +65,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Tên người dùng"
+            android:hint="User name"
             app:boxBackgroundMode="outline"
             app:boxCornerRadiusBottomEnd="12dp"
             app:boxCornerRadiusBottomStart="12dp"
@@ -89,7 +87,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Mật khẩu"
+            android:hint="Password"
             app:boxBackgroundMode="outline"
             app:boxCornerRadiusBottomEnd="12dp"
             app:boxCornerRadiusBottomStart="12dp"
@@ -114,7 +112,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
-            android:text="forgot password?    " />
+            android:text="Forgot password?    "
+            android:textColor="#BA04D5"/>
 
         <View
             android:layout_width="match_parent"
@@ -127,10 +126,27 @@
             android:layout_gravity="center"
             android:background="@drawable/button_background"
             android:clickable="true"
-            android:text="Đăng nhập"
+            android:text="Login"
             android:textColor="@color/black"
-            android:textStyle="bold"
             app:backgroundTint="#F8B8D8" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="90dp"
+            android:layout_gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Don't have account?"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sign up"
+                android:textColor="#BA04D5"
+                android:id="@+id/sign_up"/>
+        </LinearLayout>
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

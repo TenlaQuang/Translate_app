@@ -1,5 +1,8 @@
 package com.example.mobile_app.repository
 
+import android.util.Log
+import com.example.mobile_app.R
+import com.example.mobile_app.model.CheckRequest
 import com.example.mobile_app.model.CheckResponse
 import com.example.mobile_app.model.EmailCheckResponse
 import com.example.mobile_app.model.EmailRequest
@@ -8,6 +11,7 @@ import com.example.mobile_app.model.LoginResponse
 import com.example.mobile_app.model.PasswordRequest
 import com.example.mobile_app.model.RegisterRequest
 import com.example.mobile_app.model.RegisterResponse
+import com.example.mobile_app.model.User
 import com.example.mobile_app.model.UserResponse
 import com.example.mobile_app.network.RetrofitClient
 import retrofit2.Call
@@ -28,55 +32,64 @@ class UserRepository {
         })
     }
     // Đăng ký người dùng
+    fun checkEmailExists(email: String, callback: (Boolean, String?) -> Unit) {
+        val request = CheckRequest(email = email)
+        Log.d("UserRepository", "Sending checkEmail request: $request")
+        RetrofitClient.instance.checkEmail(request).enqueue(object : Callback<CheckResponse> {
+            override fun onResponse(call: Call<CheckResponse>, response: Response<CheckResponse>) {
+                Log.d("UserRepository", "Received checkEmail response: ${response.body()}, code: ${response.code()}")
+                if (response.isSuccessful) {
+                    val checkResponse = response.body()
+                    callback(checkResponse?.exists ?: false, null)
+                } else {
+                    callback(false, "Failed to check email: ${response.code()}")
+                }
+            }
+
+            override fun onFailure(call: Call<CheckResponse>, t: Throwable) {
+                Log.e("UserRepository", "Error checking email: ${t.message}")
+                callback(false, "Error checking email: ${t.message}")
+            }
+        })
+    }
+
+    fun checkUsernameExists(username: String, callback: (Boolean, String?) -> Unit) {
+        val request = CheckRequest(username = username)
+        Log.d("UserRepository", "Sending checkUsername request: $request")
+        RetrofitClient.instance.checkUsername(request).enqueue(object : Callback<CheckResponse> {
+            override fun onResponse(call: Call<CheckResponse>, response: Response<CheckResponse>) {
+                Log.d("UserRepository", "Received checkUsername response: ${response.body()}, code: ${response.code()}")
+                if (response.isSuccessful) {
+                    val checkResponse = response.body()
+                    callback(checkResponse?.exists ?: false, null)
+                } else {
+                    callback(false, "Failed to check username: ${response.code()}")
+                }
+            }
+
+            override fun onFailure(call: Call<CheckResponse>, t: Throwable) {
+                Log.e("UserRepository", "Error checking username: ${t.message}")
+                callback(false, "Error checking username: ${t.message}")
+            }
+        })
+    }
+
     fun register(username: String, password: String, email: String, callback: (RegisterResponse?) -> Unit) {
-        val registerRequest = RegisterRequest(username, password, email)
-        RetrofitClient.instance.register(registerRequest).enqueue(object : retrofit2.Callback<RegisterResponse> {
-            override fun onResponse(call: Call<RegisterResponse>, response: retrofit2.Response<RegisterResponse>) {
-                callback(response.body())
+        Log.d("UserRepository", "Register called with username: $username, email: $email")
+        val request = RegisterRequest(username, password, email)
+        RetrofitClient.instance.register(request).enqueue(object : Callback<RegisterResponse> {
+            override fun onResponse(call: Call<RegisterResponse>, response: Response<RegisterResponse>) {
+                Log.d("UserRepository", "Received register response: ${response.body()}, code: ${response.code()}")
+                if (response.isSuccessful) {
+                    callback(response.body())
+                } else {
+                    callback(RegisterResponse(false, "Failed to register: ${response.code()}"))
+                }
             }
 
             override fun onFailure(call: Call<RegisterResponse>, t: Throwable) {
-                callback(null)
-            }
-        })
-    }
-
-    // Kiểm tra email có tồn tại không
-    fun checkEmailExists(email: String, callback: (Boolean, String?) -> Unit) {
-        RetrofitClient.instance.checkEmailExists(email).enqueue(object : retrofit2.Callback<CheckResponse> {
-            override fun onResponse(call: Call<CheckResponse>, response: retrofit2.Response<CheckResponse>) {
-                if (response.isSuccessful) {
-                    val exists = response.body()?.exists ?: false
-                    callback(exists, response.body()?.message) // Trả về kết quả và thông báo
-                } else {
-                    // Nếu trả về lỗi từ backend, lấy thông báo lỗi từ server
-                    val errorMessage = response.errorBody()?.string() ?: "Lỗi khi kiểm tra email"
-                    callback(false, errorMessage)
-                }
-            }
-
-            override fun onFailure(call: Call<CheckResponse>, t: Throwable) {
-                callback(false, t.message) // Nếu lỗi kết nối
-            }
-        })
-    }
-
-    // Kiểm tra username có tồn tại không
-    fun checkUsernameExists(username: String, callback: (Boolean, String?) -> Unit) {
-        RetrofitClient.instance.checkUsernameExists(username).enqueue(object : retrofit2.Callback<CheckResponse> {
-            override fun onResponse(call: Call<CheckResponse>, response: retrofit2.Response<CheckResponse>) {
-                if (response.isSuccessful) {
-                    val exists = response.body()?.exists ?: false
-                    callback(exists, response.body()?.message) // Trả về kết quả và thông báo
-                } else {
-                    // Nếu trả về lỗi từ backend, lấy thông báo lỗi từ server
-                    val errorMessage = response.errorBody()?.string() ?: "Lỗi khi kiểm tra tên người dùng"
-                    callback(false, errorMessage)
-                }
-            }
-
-            override fun onFailure(call: Call<CheckResponse>, t: Throwable) {
-                callback(false, t.message) // Nếu lỗi kết nối
+                Log.e("UserRepository", "Error registering: ${t.message}")
+                callback(RegisterResponse(false, "Error registering: ${t.message}"))
             }
         })
     }

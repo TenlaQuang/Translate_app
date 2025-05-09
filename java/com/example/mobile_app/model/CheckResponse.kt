@@ -1,3 +1,5 @@
 package com.example.mobile_app.model
 
-data class CheckResponse(val exists: Boolean, val message: String)
+data class CheckResponse(
+    val exists: Boolean
+)
