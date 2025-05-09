@@ -24,19 +24,12 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import com.example.mobile_app.R
 import com.example.mobile_app.databinding.FragmentMicBinding
-import com.example.mobile_app.model.Translation
 import com.example.mobile_app.repository.TranslateRepository
 import com.example.mobile_app.viewmodel.TranslateViewModel
-import com.example.mobile_app.viewmodel.ViewModelFactory
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import java.io.File
 import java.util.Locale
 
 class MicFragment : Fragment() {
@@ -174,7 +167,9 @@ class MicFragment : Fragment() {
                     val targetLang = binding.spinnerTargetLanguage.selectedItem.toString()
                     val sharedPreferences = requireContext().getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
                     val userId = sharedPreferences.getInt("user_id", -1)
-                    viewModel.translateText(spokenText, sourceLang, targetLang, userId)
+                    val sourceCode = langCodeMap[sourceLang] ?: "auto"
+                    val targetCode = langCodeMap[targetLang] ?: "en"
+                    viewModel.translateText(spokenText, sourceCode, targetCode, userId)
                     binding.sourceTextView.text = spokenText
                 } else {
                     Toast.makeText(requireContext(), "Không nhận được nội dung giọng nói", Toast.LENGTH_SHORT).show()
