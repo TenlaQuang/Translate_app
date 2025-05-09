@@ -124,8 +124,8 @@ class TranslateFragment : Fragment() {
                 return@setOnClickListener
             }
 
-            val sourceCode = langCodeMap[sourceLang] ?: "en"
-            val targetCode = langCodeMap[targetLang] ?: "es"
+            val sourceCode = langCodeMap[sourceLang] ?: "auto"
+            val targetCode = langCodeMap[targetLang] ?: "en"
             val sharedPreferences = requireContext().getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
             val userId = sharedPreferences.getInt("user_id", -1)  // Giá trị mặc định là -1 nếu không tìm thấy
 
