@@ -7,14 +7,6 @@
         <item>German</item>
     </string-array>
 
-    <!-- Tạo array cho ảnh quốc kỳ tương ứng -->
-<!--    <array name="flags">-->
-<!--        <item>@drawable/usa_flag</item>-->
-<!--        <item>@drawable/spain_flag</item>-->
-<!--        <item>@drawable/france_flag</item>-->
-<!--        <item>@drawable/germany_flag</item>-->
-<!--    </array>-->
-
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
