@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/home_nav_graph"
+    app:startDestination="@id/translateFragment">
+
+    <fragment
+        android:id="@+id/translateFragment"
+        android:name="com.example.mobile_app.ui.fragment.TranslateFragment"
+        android:label="Dịch" />
+
+    <fragment
+        android:id="@+id/historyFragment"
+        android:name="com.example.mobile_app.ui.fragment.HistoryFragment"
+        android:label="Lịch sử" />
+
+    <fragment
+        android:id="@+id/micFragment"
+        android:name="com.example.mobile_app.ui.fragment.MicFragment"
+        android:label="Mic"/>
+    <fragment
+        android:id="@+id/cameraFragment"
+        android:name="com.example.mobile_app.ui.fragment.CameraFragment"
+        android:label="Camera"/>
+    <fragment
+        android:id="@+id/favoriteFragment"
+        android:name="com.example.mobile_app.ui.fragment.FavoriteFragment"
+        android:label="Yêu thích"/>
+</navigation>

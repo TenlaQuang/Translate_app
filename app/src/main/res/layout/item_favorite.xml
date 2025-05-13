@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/tools"
+    card_view:cardCornerRadius="8dp"
+    card_view:cardElevation="4dp"
+    android:layout_margin="8dp"
+    app:ignore="NamespaceTypo">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="15dp">
+
+            <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="5"
+            android:layout_marginStart="10dp">
+
+            <TextView
+                android:id="@+id/SourceLang"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hello"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:id="@+id/InputText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bonjour"
+                android:textSize="15sp"
+                android:layout_weight="3"/>
+                <ImageView
+                    android:id="@+id/starIC"
+                    android:layout_width="25dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_favorited"
+                    android:layout_weight="1"/>
+        </LinearLayout>
+
+
+
+    <View
+        android:layout_width="300dp"
+        android:layout_height="1dp"
+        android:background="#454343"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"/>
+
+    <LinearLayout
+        android:layout_width="360dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="5"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="10dp">
+
+        <TextView
+            android:id="@+id/TargetLang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hello"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:id="@+id/TranslatedText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bonjour"
+            android:textSize="15sp"
+            android:layout_weight="4"/>
+
+    </LinearLayout>
+
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
