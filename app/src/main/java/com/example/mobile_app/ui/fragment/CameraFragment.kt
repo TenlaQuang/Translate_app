@@ -36,13 +36,15 @@ class CameraFragment : Fragment() {
     private lateinit var cameraExecutor: ExecutorService
     private var imageCapture: ImageCapture? = null
 
-    private val targetLanguages = arrayOf("English", "Albanian", "Arabic", "Azerbaijani", "Basque", "Bengali", "Bulgarian",
+    private val targetLanguages = arrayOf(
+        "English", "Albanian", "Arabic", "Azerbaijani", "Basque", "Bengali", "Bulgarian",
         "Catalan", "Chinese", "Chinese (traditional)", "Czech", "Danish", "Dutch",
         "Esperanto", "Estonian", "Finnish", "French", "Galician", "German", "Greek",
         "Hebrew", "Hindi", "Hungarian", "Indonesian", "Irish", "Italian", "Japanese",
         "Korean", "Latvian", "Lithuanian", "Malay", "Norwegian", "Persian", "Polish",
         "Portuguese", "Romanian", "Russian", "Slovak", "Slovenian", "Spanish", "Swedish",
-        "Tagalog", "Thai", "Turkish", "Ukranian", "Urdu", "Vietnamese")
+        "Tagalog", "Thai", "Turkish", "Ukranian", "Urdu", "Vietnamese"
+    )
     private val langCodeMap = mapOf(
         "English" to "en",
         "Albanian" to "sq",
@@ -98,7 +100,11 @@ class CameraFragment : Fragment() {
             if (isGranted) {
                 startCamera()
             } else {
-                Toast.makeText(requireContext(), "Bạn cần cấp quyền camera để sử dụng tính năng này", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    requireContext(),
+                    "Bạn cần cấp quyền camera để sử dụng tính năng này",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
 
@@ -120,7 +126,11 @@ class CameraFragment : Fragment() {
             Log.d("CameraFragment", "ViewModel initialized successfully")
         } catch (e: Exception) {
             Log.e("CameraFragment", "Error initializing ViewModel", e)
-            Toast.makeText(requireContext(), "Error initializing ViewModel: ${e.message}", Toast.LENGTH_LONG).show()
+            Toast.makeText(
+                requireContext(),
+                "Error initializing ViewModel: ${e.message}",
+                Toast.LENGTH_LONG
+            ).show()
             return
         }
 
@@ -140,6 +150,8 @@ class CameraFragment : Fragment() {
 
         // Quan sát kết quả dịch
         viewModel.translatedText.observe(viewLifecycleOwner) {
+            // Ẩn ProgressBar khi có kết quả
+            binding.progressBar.visibility = View.GONE
             binding.translatedTextView.text = it
             binding.translatedTextView.visibility = View.VISIBLE
             // Hiển thị resultLayout
@@ -147,9 +159,13 @@ class CameraFragment : Fragment() {
             // Ẩn PreviewView và nút chụp
             binding.previewView.visibility = View.GONE
             binding.btnCapture.visibility = View.GONE
+            // Ẩn Spinner
+            binding.spinnerTargetLanguage.visibility = View.GONE
         }
 
         viewModel.error.observe(viewLifecycleOwner) {
+            // Ẩn ProgressBar khi có lỗi
+            binding.progressBar.visibility = View.GONE
             Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show()
         }
 
@@ -160,7 +176,11 @@ class CameraFragment : Fragment() {
     }
 
     private fun setupSpinner() {
-        val targetAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, targetLanguages)
+        val targetAdapter = ArrayAdapter(
+            requireContext(),
+            android.R.layout.simple_spinner_item,
+            targetLanguages
+        )
         targetAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.spinnerTargetLanguage.adapter = targetAdapter
     }
@@ -213,6 +233,9 @@ class CameraFragment : Fragment() {
     private fun takePhoto() {
         val imageCapture = imageCapture ?: return
 
+        // Hiển thị ProgressBar khi bắt đầu chụp ảnh
+        binding.progressBar.visibility = View.VISIBLE
+
         // Tạo file tạm để lưu ảnh
         val photoFile = File(
             requireContext().externalCacheDir,
@@ -228,13 +251,19 @@ class CameraFragment : Fragment() {
                 override fun onImageSaved(output: ImageCapture.OutputFileResults) {
                     binding.imageView.setImageURI(output.savedUri)
                     binding.imageView.visibility = View.VISIBLE
-                    Toast.makeText(requireContext(), "Ảnh đã được chụp: ${photoFile.absolutePath}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        requireContext(),
+                        "Ảnh đã được chụp: ${photoFile.absolutePath}",
+                        Toast.LENGTH_SHORT
+                    ).show()
 
                     // Trích xuất văn bản từ ảnh
                     extractTextFromImage(output.savedUri!!)
                 }
 
                 override fun onError(exc: ImageCaptureException) {
+                    // Ẩn ProgressBar nếu có lỗi chụp ảnh
+                    binding.progressBar.visibility = View.GONE
                     Log.e("CameraFragment", "Photo capture failed: ${exc.message}", exc)
                     Toast.makeText(requireContext(), "Lỗi khi chụp ảnh", Toast.LENGTH_SHORT).show()
                 }
@@ -255,19 +284,35 @@ class CameraFragment : Fragment() {
                     val targetCode = langCodeMap[targetLang] ?: "vi"
 
                     // Lấy userId từ SharedPreferences
-                    val sharedPreferences = requireContext().getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
+                    val sharedPreferences =
+                        requireContext().getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
                     val userId = sharedPreferences.getInt("user_id", -1)
 
                     // Dịch văn bản với source là "auto"
-                    Log.d("CameraFragment", "Translating: text=$extractedText, source=auto, target=$targetCode, userId=$userId")
+                    Log.d(
+                        "CameraFragment",
+                        "Translating: text=$extractedText, source=auto, target=$targetCode, userId=$userId"
+                    )
                     viewModel.translateText(extractedText, "auto", targetCode, userId)
                 } else {
-                    Toast.makeText(requireContext(), "Không tìm thấy văn bản trong ảnh", Toast.LENGTH_SHORT).show()
+                    // Ẩn ProgressBar nếu không tìm thấy văn bản
+                    binding.progressBar.visibility = View.GONE
+                    Toast.makeText(
+                        requireContext(),
+                        "Không tìm thấy văn bản trong ảnh",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
             .addOnFailureListener { e ->
+                // Ẩn ProgressBar nếu nhận diện văn bản thất bại
+                binding.progressBar.visibility = View.GONE
                 Log.e("CameraFragment", "Text recognition failed: ${e.message}", e)
-                Toast.makeText(requireContext(), "Lỗi nhận diện văn bản: ${e.message}", Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    requireContext(),
+                    "Lỗi nhận diện văn bản: ${e.message}",
+                    Toast.LENGTH_LONG
+                ).show()
             }
     }
 
