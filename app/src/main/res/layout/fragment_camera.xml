@@ -5,37 +5,36 @@
     android:layout_height="match_parent"
     android:background="@color/background_light">
 
-    <!-- Spinner ngôn ngữ đích (toolbar) -->
-    <Spinner
-        android:id="@+id/spinnerTargetLanguage"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/spinner_background"
-        android:padding="8dp"
-        android:textColor="@color/text_primary"
-        android:dropDownVerticalOffset="8dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="16dp" />
-
-    <!-- PreviewView chiếm toàn bộ từ dưới spinner đến đáy -->
+    <!-- PreviewView chiếm toàn bộ màn hình -->
     <androidx.camera.view.PreviewView
         android:id="@+id/previewView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/spinnerTargetLanguage"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:background="@android:color/transparent" />
+
+    <!-- Spinner ngôn ngữ đích (nằm trong PreviewView, chiều rộng 150dp, căn trên cùng bên trái) -->
+    <Spinner
+        android:id="@+id/spinnerTargetLanguage"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded"
+        android:padding="8dp"
+        android:textColor="@color/text_primary"
+        android:dropDownVerticalOffset="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toTopOf="@id/previewView"
+        app:layout_constraintStart_toStartOf="@id/previewView" />
 
     <!-- Nút chụp ảnh nằm chồng lên PreviewView -->
     <Button
         android:id="@+id/btnCapture"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:text="Chụp"
         android:textSize="16sp"
         android:textColor="@android:color/white"
         android:background="@drawable/capture_button_background"
@@ -43,6 +42,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginBottom="16dp" />
+
+    <!-- ProgressBar hiển thị khi chụp ảnh và dịch (giữa màn hình) -->
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- Layout kết quả (ẩn ban đầu, nằm giữa màn hình) -->
     <androidx.core.widget.NestedScrollView
@@ -53,7 +63,7 @@
         android:backgroundTint="@color/card_background"
         android:padding="8dp"
         android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@id/spinnerTargetLanguage"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -82,7 +92,7 @@
                 android:layout_height="wrap_content"
                 android:visibility="gone"
                 android:textColor="@color/text_accent"
-                android:textSize="18sp"
+                android:textSize="30sp"
                 android:padding="12dp"
                 android:gravity="center" />
 
