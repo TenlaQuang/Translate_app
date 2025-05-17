@@ -4,5 +4,5 @@
     <item android:color="#FF4081" android:state_checked="true"/> <!-- Màu hồng khi chọn -->
 
     <!-- Màu khi item không được chọn -->
-    <item android:color="#9E9E9E" /> <!-- Màu xám khi không chọn -->
+    <item android:color="#000000" /> <!-- Màu xám khi không chọn -->
 </selector>

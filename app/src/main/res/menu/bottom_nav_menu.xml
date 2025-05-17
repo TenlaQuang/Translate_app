@@ -15,8 +15,8 @@
     <!-- Translation Button (Dịch) - Center item -->
     <item
         android:id="@+id/nav_translate"
-        android:icon="@drawable/ic_translate_circle"
-        android:title="Dịch"
+        android:icon="@drawable/ic_empty"
+        android:title=""
         app:showAsAction="ifRoom"
         android:iconTint="@null"/>
 
